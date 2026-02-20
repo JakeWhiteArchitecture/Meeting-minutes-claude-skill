@@ -246,7 +246,7 @@ Apply confirmed name and role mappings from preflight throughout. If attribution
 ## Item Writing Rules
 
 1. **One decision per item** — don't cram multiple things together
-2. **Active voice** — "BT to fabricate..." not "It was agreed that fabrication would..."
+2. **Active voice** — "JW to provide..." not "It was agreed that fabrication would..."
 3. **Specific** — include dimensions, materials, dates where mentioned
 4. **Owner assigned** — every item needs someone responsible:
    - Use **"Noted"** for informational items with no action required
@@ -293,7 +293,7 @@ Review draft minutes to identify duplicate, overlapping, or fragmented items. Fl
 |------|-------------|---------|
 | **Semantic duplicate** | Same meaning, different words | "Remove wall section" vs "Remove masonry nib" |
 | **Fragmented sequence** | Single action split across items | "Connect to column" / "Fill gap after removal" |
-| **Overlapping scope** | Items partially cover same ground | "BT to handle drainage" vs "Drainage separate from retrofit" |
+| **Overlapping scope** | Items partially cover same ground | "JW to handle drainage" vs "Drainage separate from retrofit" |
 | **Cause-and-effect split** | Action and consequence separated | "Nib removed" / "Gap requires infill" |
 
 ## Detection Process
