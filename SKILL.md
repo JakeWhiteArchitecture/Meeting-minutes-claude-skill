@@ -416,8 +416,8 @@ Before: X.1 "Remove element" / X.2 "Fill gap"
 After: X.1 "Remove element and make good."
 
 ### Who-Then-What
-Before: X.1 "BT to handle drainage" / X.2 "Drainage includes [scope]"
-After: X.1 "Drainage ([scope]): BT to handle."
+Before: X.1 "JW to handle drainage" / X.2 "Drainage includes [scope]"
+After: X.1 "Drainage ([scope]): JW to handle."
 
 ### Caveat-Then-Content
 Before: X.1 "Note required" / X.2 "Note to state [text]"
