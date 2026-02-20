@@ -90,7 +90,7 @@ Flag any mentioned party whose role cannot be determined. Use the widget at the 
 
 ---
 
-### 0.2 — Name & Spelling Variants
+### 0.2 — Spelling Variants
 
 Scan the entire transcript for names of people, companies, products, and technical terms that appear in more than one form. AI transcription errors, informal shorthand, and mishearing all create variants that must be unified before drafting — a single document should never use two different spellings for the same thing.
 
