@@ -1,0 +1,125 @@
+# Meeting Minutes Skill
+
+A structured skill for [Claude](https://claude.ai) that transforms raw meeting transcripts into professional, clean minutes — with built-in preflight checks, duplicate detection, and user checkpoints at every stage. Always check the outputs to ensure they accurately reflect what was discussed.
+
+---
+
+## What it does
+
+Paste in a raw transcript (Teams, Otter, Zoom, handwritten notes) and the skill walks you through:
+
+1. **Preflight** — scans for speaker identities, spelling variants, off-topic content, and unresolved items before a single minute is drafted
+2. **Draft** — produces structured minutes grouped by topic, not chronology, with clear action owners
+3. **Critique** — detects duplicate, fragmented, or overlapping items using a trigger-based confidence system
+4. **Finalise** — applies your merge decisions and outputs a clean `.docx`
+
+---
+
+## Key features
+
+### Preflight scan
+Before drafting, the skill identifies:
+- **Speakers and their roles** — maps transcript labels to Speaker 1, 2 or 3 or Initials where inputted by user.
+- **Mentioned but not present** — people referenced who may still receive actions (e.g. structural engineers, contractors, suppliers)
+- **Spelling variants** — catches AI transcription errors and inconsistent naming across the transcript, proposes a canonical form for each, and locks it in before drafting
+- **Attribution gaps** — flags moments where it genuinely can't tell who is speaking
+- **Off-topic content** — silently excludes social chat, dropped calls, and filler
+- **Open items** — surfaces unresolved decisions for an Outstanding Items section
+
+### Duplicate detection
+Uses a T1–T8 trigger system to assess merge risk:
+
+| Code | Trigger |
+|------|---------|
+| T1 | Different action owners |
+| T2 | Both items contain numbers/dimensions |
+| T3 | Conditional language (if/when/unless) |
+| T4 | Different trades or disciplines |
+| T5 | >15 words length difference |
+| T6 | Caveat or qualification present |
+| T7 | Different timeframes |
+| T8 | External document referenced |
+
+- 0 triggers → auto-merge
+- 1 trigger (not T6) → auto-merge
+- T6 alone → always flag (caveats hide liability)
+- 2+ triggers → flag for user decision
+
+### Interactive checkpoints
+Uses Claude's multi-choice widget interface for merge decisions — **Merge / Keep separate / Other** — rather than typing responses, so reviews are fast.
+
+### Action ownership
+- **Noted** — informational, no action required
+- **TBC** — action needed, owner not yet agreed
+- **Outstanding** — no decision reached, grouped in a dedicated section
+
+---
+
+## How to use
+
+### In Claude.ai (with skills enabled)
+1. Add `SKILL.md` to your Claude skills folder
+2. Start a new conversation and paste your transcript
+3. Claude will run preflight automatically, then guide you through the rest
+
+### Manually
+1. Open a Claude conversation
+2. Paste the contents of `SKILL.md` followed by your transcript
+3. Claude will follow the workflow
+
+---
+
+## File structure
+
+```
+meeting-minutes/
+├── SKILL.md      # The skill definition — all logic lives here
+└── README.md     # This file
+```
+
+---
+
+## Output
+
+The final output is a formatted `.docx` file containing:
+
+- **Header table** — project, date, attendees, mentioned-but-not-present parties, meeting type, minutes by
+- **Numbered item tables** — grouped by topic/trade, with item text and action owner per row
+- **Outstanding Items section** — if any unresolved items were flagged at preflight
+- **Footer note** — standard correction window notice
+
+---
+
+## Workflow overview
+
+```
+Transcript input
+      │
+      ▼
+Part 0: Preflight
+  → Speakers, spelling variants, open items
+  → Widget: confirm canonicals + unknown speakers
+      │
+      ▼
+Part A: Draft minutes
+  → Apply canonical spellings throughout
+  → TBC / Outstanding for unowned/unresolved items
+      │
+      ▼
+Checkpoint 1: Proceed to critique?
+      │
+      ▼
+Part B: Critique & deduplication
+  → T1–T8 trigger system
+  → Widget per flagged pair: Merge / Keep separate / Other
+      │
+      ▼
+Part C: Finalise
+  → Apply decisions, clean up, output .docx
+```
+
+---
+
+## Licence
+
+MIT — use freely, adapt as needed.
